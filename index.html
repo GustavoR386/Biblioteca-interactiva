@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Interactiva</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+<body id="app" >
+    <header>
+        <h1>Biblioteca de Recursos</h1>
+    </header>
+    <main>
+        <section class="controls">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar recurso...">
+                <button onclick="filterResources()"><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="category-container">
+                <label for="category-select">Categoría:</label>
+                <select id="category-select" onchange="filterResources()">
+                    <option value="all">Todas</option>
+                    </select>
+                <button onclick="showAddCategoryModal()"><i class="fas fa-plus"></i> Añadir Categoría</button>
+            </div>
+            <button onclick="showAddResourceModal()"><i class="fas fa-plus"></i> Añadir Recurso</button>
+
+        </section>
+
+        <section class="resources" id="resources-container">
+            
+        </section>
+    </main>
+    
+     <!-- Modal para añadir recurso -->
+    <div id="add-resource-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeAddResourceModal()">×</span>
+            <h2>Añadir Nuevo Recurso</h2>
+            <form id="add-resource-form">
+                <label for="resource-title">Título:</label>
+                <input type="text" id="resource-title" required>
+    
+                <label for="resource-category">Categoría:</label>
+                <select id="resource-category" required>
+                </select>
+                <label for="resource-file">Archivo PDF:</label>
+                   <input type="file" id="resource-file" accept=".pdf" required>
+                <button type="button" onclick="addResource()">Añadir Recurso</button>
+            </form>
+        </div>
+    </div>
+    <!-- Modal para añadir categoría -->
+    <div id="add-category-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeAddCategoryModal()">×</span>
+            <h2>Añadir Nueva Categoría</h2>
+            <form id="add-category-form">
+                <label for="category-name">Nombre de la Categoría:</label>
+                <input type="text" id="category-name" required>
+                <button type="button" onclick="addCategory()">Añadir Categoría</button>
+            </form>
+        </div>
+    </div>
+        <!-- Modal de previsualizacion -->
+      <div id="preview-modal" class="modal">
+        <div class="modal-content">
+             <span class="close-button" onclick="closePreviewModal()">×</span>
+             <h2 id="preview-title"></h2>
+              <div id="preview-container"></div>
+              <button id="preview-download" style="display:none;"><i class="fas fa-download"></i> Descargar</button>
+         </div>
+      </div>
+   
+    <script src="script.js"></script>
+</body>
+</html>
